@@ -22,10 +22,10 @@
    - Um açaí pode ser personalizado com ingredientes extras e coberturas.
    - O preço do açaí deve ser calculado com base no tamanho e nos itens adicionais.
 
-6. **Ingredientes Extras e Coberturas:**
+6. **Adicionais e Coberturas:**
    - Ingredientes extras e coberturas devem estar disponíveis para adição aos açaís.
-   - Alguns ingredientes extras devem ter um preço associado.
-   - Os clientes podem selecionar quais ingredientes extras e coberturas desejam adicionar ao açaí.
+   - Alguns ingredientes devem ter um preço associado.
+   - Os clientes podem selecionar quais ingredientes e coberturas desejam adicionar ao açaí.
 
 9. **Validações:**
    - O sistema deve realizar validações para garantir que as informações inseridas sejam válidas, como endereços válidos, métodos de pagamento válidos, etc.
