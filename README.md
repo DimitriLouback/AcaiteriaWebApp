@@ -8,9 +8,10 @@
 
 ## Índice
 
-- [Como rodar este projeto?](#-Como-rodar-este-projeto?)
-- [Tecnologias utilizadas](#-Tecnologias-utilizadas)
-- [Desenvolvimento](#-Desenvolvimento)
+- [Como rodar este projeto?](#como-rodar-este-projeto)
+- [Tecnologias utilizadas](#tecnologias-utilizadas)
+- [Desenvolvimento](#desenvolvimento)
+
 
 ## Como rodar este projeto?
 
