@@ -17,10 +17,10 @@ public class ClienteService {
         this.clienteRepository = clienteRepository;
     }
 
-    public String cadastrarCliente(String nome, String telefone, String endereco) {
+    public Cliente cadastrarCliente(String nome, String telefone, String endereco) {
         Cliente novoCliente = new Cliente(nome, telefone, endereco);
         clienteRepository.save(novoCliente);
-        return "Cliente cadastrado com sucesso.";
+        return novoCliente;
     }
 
     public String atualizarCliente(Long id, String nome, String telefone, String endereco) {

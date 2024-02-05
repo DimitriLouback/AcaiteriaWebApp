@@ -5,7 +5,7 @@ import br.edu.iff.acaiteriaWebApp.model.ItemPedido;
 import br.edu.iff.acaiteriaWebApp.model.Pedido;
 import br.edu.iff.acaiteriaWebApp.model.StatusPedido;
 import br.edu.iff.acaiteriaWebApp.service.PedidoService;
-
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

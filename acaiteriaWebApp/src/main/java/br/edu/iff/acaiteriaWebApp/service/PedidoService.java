@@ -1,9 +1,12 @@
 package br.edu.iff.acaiteriaWebApp.service;
 
+
 import br.edu.iff.acaiteriaWebApp.model.Cliente;
 import br.edu.iff.acaiteriaWebApp.model.ItemPedido;
 import br.edu.iff.acaiteriaWebApp.model.Pedido;
 import br.edu.iff.acaiteriaWebApp.model.StatusPedido;
+import br.edu.iff.acaiteriaWebApp.repository.ClienteRepository;
+import br.edu.iff.acaiteriaWebApp.service.ClienteService;
 import br.edu.iff.acaiteriaWebApp.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,14 +18,20 @@ import java.util.List;
 public class PedidoService {
 
     private final PedidoRepository pedidoRepository;
+    private final ClienteService clienteService;
 
     @Autowired
-    public PedidoService(PedidoRepository pedidoRepository) {
+    public PedidoService(PedidoRepository pedidoRepository, ClienteService clienteService ) {
         this.pedidoRepository = pedidoRepository;
+        this.clienteService = clienteService;
     }
 
     public String cadastrarPedido(Date dataPedido, StatusPedido status, double total, Cliente cliente, List<ItemPedido> itensPedido) {
-        Pedido novoPedido = new Pedido(dataPedido, status, total, cliente, itensPedido);
+        if (clienteService == null) {
+            return "Erro: clienteService não inicializado corretamente.";
+        }
+        Cliente clienteSalvo = clienteService.cadastrarCliente(cliente.getNome(), cliente.getTelefone(), cliente.getEndereco());
+        Pedido novoPedido = new Pedido(dataPedido, status, total, clienteSalvo, itensPedido);
         pedidoRepository.save(novoPedido);
         return "Pedido cadastrado com sucesso.";
     }

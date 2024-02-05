@@ -4,6 +4,7 @@ import br.edu.iff.acaiteriaWebApp.model.Cliente;
 import br.edu.iff.acaiteriaWebApp.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import io.swagger.v3.oas.annotations.Operation;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class ClienteController {
     }
 
     @PostMapping
-    public String cadastrarCliente(@RequestBody Cliente cliente) {
+    public Cliente cadastrarCliente(@RequestBody Cliente cliente) {
         return clienteService.cadastrarCliente(cliente.getNome(), cliente.getTelefone(), cliente.getEndereco());
     }
 

@@ -4,6 +4,7 @@ import br.edu.iff.acaiteriaWebApp.model.Produto;
 import br.edu.iff.acaiteriaWebApp.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import io.swagger.v3.oas.annotations.Operation;
 
 import java.util.List;
 
