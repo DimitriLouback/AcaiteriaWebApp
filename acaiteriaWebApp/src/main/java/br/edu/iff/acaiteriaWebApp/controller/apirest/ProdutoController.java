@@ -2,6 +2,8 @@ package br.edu.iff.acaiteriaWebApp.controller.apirest;
 
 import br.edu.iff.acaiteriaWebApp.model.Produto;
 import br.edu.iff.acaiteriaWebApp.service.ProdutoService;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;
@@ -15,6 +17,12 @@ public class ProdutoController {
     @Autowired
     private ProdutoService produtoService;
 
+    @Operation(description = "busca o produto pelo id")
+    @ApiResponses( value = {
+            @ApiResponse(responseCode = "200", description = "Retorna produto"),
+            @ApiResponse(responseCode = "400", description = "produto inexistente")
+    }
+    )
     @GetMapping("/{id}")
     public Produto obterProduto(@PathVariable Long id) {
         return produtoService.buscarProduto(id);

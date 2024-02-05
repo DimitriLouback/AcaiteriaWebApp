@@ -2,6 +2,8 @@ package br.edu.iff.acaiteriaWebApp.controller.apirest;
 
 import br.edu.iff.acaiteriaWebApp.model.Cliente;
 import br.edu.iff.acaiteriaWebApp.service.ClienteService;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;
@@ -19,11 +21,18 @@ public class ClienteController {
         this.clienteService = clienteService;
     }
 
+    @Operation(description = "busca o cliente pelo id")
+    @ApiResponses( value = {
+            @ApiResponse(responseCode = "200", description = "Retorna cliente"),
+            @ApiResponse(responseCode = "400", description = "Cliente inexistente")
+            }
+    )
     @GetMapping("/{id}")
     public Cliente obterCliente(@PathVariable Long id) {
         return clienteService.buscarCliente(id);
     }
 
+    @ApiResponse(responseCode = "200", description = "Cliente criado com sucesso")
     @PostMapping
     public Cliente cadastrarCliente(@RequestBody Cliente cliente) {
         return clienteService.cadastrarCliente(cliente.getNome(), cliente.getTelefone(), cliente.getEndereco());

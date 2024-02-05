@@ -6,6 +6,8 @@ import br.edu.iff.acaiteriaWebApp.model.Pedido;
 import br.edu.iff.acaiteriaWebApp.model.StatusPedido;
 import br.edu.iff.acaiteriaWebApp.service.PedidoService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +25,12 @@ public class PedidoController {
         this.pedidoService = pedidoService;
     }
 
+    @Operation(description = "busca o pedido pelo id")
+    @ApiResponses( value = {
+            @ApiResponse(responseCode = "200", description = "Retorna pedido"),
+            @ApiResponse(responseCode = "400", description = "Pedido inexistente")
+    }
+    )
     @GetMapping("/{id}")
     public Pedido obterPedido(@PathVariable Long id) {
         return pedidoService.buscarPedido(id);

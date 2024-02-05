@@ -4,6 +4,8 @@ import br.edu.iff.acaiteriaWebApp.model.ItemPedido;
 import br.edu.iff.acaiteriaWebApp.model.Pedido;
 import br.edu.iff.acaiteriaWebApp.model.Produto;
 import br.edu.iff.acaiteriaWebApp.service.ItemPedidoService;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;
@@ -43,6 +45,12 @@ public class ItemPedidoController {
         return itemPedidoService.deletarItemPedido(id);
     }
 
+    @Operation(description = "busca os itens pelo id")
+    @ApiResponses( value = {
+            @ApiResponse(responseCode = "200", description = "Retorna itens"),
+            @ApiResponse(responseCode = "400", description = "itens inexistente")
+    }
+    )
     @GetMapping("/{id}")
     public ItemPedido buscarItemPedido(@PathVariable Long id) {
         return itemPedidoService.buscarItemPedido(id);
