@@ -21,6 +21,7 @@ public class Pedido implements Serializable {
 
     private double total;
 
+
     @ManyToOne
     private Cliente cliente;
 
@@ -33,6 +34,9 @@ public class Pedido implements Serializable {
         this.status = status;
         this.total = total;
         this.cliente = cliente;
+    }
+
+    public Pedido() {
     }
 
     public Date getDataPedido() {

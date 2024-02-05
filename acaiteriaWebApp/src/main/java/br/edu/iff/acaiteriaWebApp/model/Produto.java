@@ -20,6 +20,9 @@ public class Produto implements Serializable {
         this.preco = preco;
     }
 
+    public Produto() {
+    }
+
     public String getNome() {
         return nome;
     }

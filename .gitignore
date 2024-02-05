@@ -1,0 +1,2 @@
+/data/
+git rm --cached exemplo.mv.db

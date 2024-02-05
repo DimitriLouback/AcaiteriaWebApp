@@ -25,6 +25,9 @@ public class Cliente implements Serializable {
 
     }
 
+    public Cliente() {
+    }
+
     public String getNome() {
         return nome;
     }
