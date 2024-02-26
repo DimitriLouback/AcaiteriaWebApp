@@ -1,6 +1,10 @@
 package br.edu.iff.acaiteriaWebApp.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
+
 import java.io.Serializable;
 @Entity
 public class Produto implements Serializable {
@@ -9,9 +13,10 @@ public class Produto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @NotBlank(message = "O nome não pode ser em branco ou nulo")
     private String nome;
     private String descricao;
+    @Positive(message = "Tem que ser maior que 0")
     private double preco;
 
     public Produto(String nome,String descricao, double preco) {
