@@ -8,6 +8,7 @@ import br.edu.iff.acaiteriaWebApp.service.PedidoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,12 +38,12 @@ public class PedidoController {
     }
 
     @PostMapping
-    public String cadastrarPedido(@RequestBody Pedido pedido) {
+    public String cadastrarPedido( @Valid @RequestBody Pedido pedido) {
         return pedidoService.cadastrarPedido(pedido.getDataPedido(), pedido.getStatus(), pedido.getTotal(), pedido.getCliente(), pedido.getItensPedido());
     }
 
     @PutMapping("/{id}")
-    public String atualizarPedido(@PathVariable Long id, @RequestBody Pedido pedido) {
+    public String atualizarPedido(@PathVariable Long id, @Valid @RequestBody Pedido pedido) {
         return pedidoService.atualizarPedido(id, pedido.getDataPedido(), pedido.getStatus(), pedido.getTotal(), pedido.getCliente(), pedido.getItensPedido());
     }
 

@@ -4,6 +4,7 @@ import br.edu.iff.acaiteriaWebApp.model.Cliente;
 import br.edu.iff.acaiteriaWebApp.service.ClienteService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;
@@ -34,12 +35,12 @@ public class ClienteController {
 
     @ApiResponse(responseCode = "200", description = "Cliente criado com sucesso")
     @PostMapping
-    public Cliente cadastrarCliente(@RequestBody Cliente cliente) {
+    public Cliente cadastrarCliente(@Valid @RequestBody Cliente cliente) {
         return clienteService.cadastrarCliente(cliente.getNome(), cliente.getTelefone(), cliente.getEndereco());
     }
 
     @PutMapping("/{id}")
-    public String atualizarCliente(@PathVariable Long id, @RequestBody Cliente cliente) {
+    public String atualizarCliente(@PathVariable Long id, @Valid @RequestBody Cliente cliente) {
         return clienteService.atualizarCliente(id, cliente.getNome(), cliente.getTelefone(), cliente.getEndereco());
     }
 
