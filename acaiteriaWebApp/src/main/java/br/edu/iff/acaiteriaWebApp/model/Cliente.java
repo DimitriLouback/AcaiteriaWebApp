@@ -1,6 +1,8 @@
 package br.edu.iff.acaiteriaWebApp.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 
 import java.io.Serializable;
@@ -14,8 +16,12 @@ public class Cliente implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "O nome não pode ser em branco ou nulo")
     private String nome;
+    @NotBlank(message = "O telefone não pode ser em branco ou nulo")
+    @Pattern(regexp = "\\d{9,11}", message = "O telefone deve conter entre 9 e 11 dígitos numéricos")
     private String telefone;
+    @NotBlank(message = "O endereço não pode ser em branco ou nulo")
     private String endereco;
 
     public Cliente(String nome, String telefone, String endereco) {

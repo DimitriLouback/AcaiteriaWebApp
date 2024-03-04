@@ -4,6 +4,7 @@ import br.edu.iff.acaiteriaWebApp.model.Produto;
 import br.edu.iff.acaiteriaWebApp.service.ProdutoService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;
@@ -29,12 +30,12 @@ public class ProdutoController {
     }
 
     @PostMapping
-    public String cadastrarProduto(@RequestBody Produto produto) {
+    public String cadastrarProduto(@Valid @RequestBody Produto produto) {
         return produtoService.cadastrarProduto(produto.getNome(), produto.getDescricao(), produto.getPreco());
     }
 
     @PutMapping("/{id}")
-    public String atualizarProduto(@PathVariable Long id, @RequestBody Produto produto) {
+    public String atualizarProduto(@PathVariable Long id, @Valid @RequestBody Produto produto) {
         return produtoService.atualizarProduto(id, produto.getNome(), produto.getDescricao(), produto.getPreco());
     }
 

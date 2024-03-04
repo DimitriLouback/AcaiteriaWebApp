@@ -1,6 +1,9 @@
 package br.edu.iff.acaiteriaWebApp.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
+
 import java.util.List;
 import java.io.Serializable;
 import java.util.Date;
@@ -13,14 +16,15 @@ public class Pedido implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @NotNull(message = "A data do pedido não pode ser nula")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dataPedido;
 
     @Enumerated(EnumType.STRING)
     private StatusPedido status;
 
+    @PositiveOrZero(message = "Tem que ser maior ou igual a 0")
     private double total;
-
 
     @ManyToOne
     private Cliente cliente;
