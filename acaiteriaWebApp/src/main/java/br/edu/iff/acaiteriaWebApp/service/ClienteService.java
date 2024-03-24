@@ -17,8 +17,8 @@ public class ClienteService {
         this.clienteRepository = clienteRepository;
     }
 
-    public Cliente cadastrarCliente(String nome, String telefone, String endereco) {
-        Cliente novoCliente = new Cliente(nome, telefone, endereco);
+    public Cliente cadastrarCliente(String nome, String telefone, String endereco, String senha) {
+        Cliente novoCliente = new Cliente(nome, telefone, endereco, senha);
         clienteRepository.save(novoCliente);
         return novoCliente;
     }
@@ -54,5 +54,15 @@ public class ClienteService {
 
     public List<Cliente> listarClientes() {
         return clienteRepository.findAll();
+    }
+
+    public Cliente autenticarCliente(String nome, String senha) {
+        Cliente cliente = clienteRepository.findByNomeAndSenha(nome, senha);
+
+        if (cliente != null && cliente.getSenha().equals(senha)) {
+            return cliente;
+        } else {
+            return null; // Cliente não encontrado ou senha incorreta.
+        }
     }
 }

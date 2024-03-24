@@ -4,21 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Minha Página</title>
+    <title>Histórico de Pedidos</title>
 
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 
 </head>
 <body>
 
 
-<div th:replace="home :: navbar"></div>
+<div th:replace="~{home :: navbar}"></div>
+
+<h1>Histórico de Pedidos</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Data do Pedido</th>
+        <th>Status</th>
+        <th>Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="pedido : ${pedidos}">
+        <tr>
+            <td th:text="${pedido.id}"></td>
+            <td th:text="${#dates.format(pedido.dataPedido, 'dd/MM/yyyy HH:mm:ss')}"></td>
+            <td th:text="${pedido.status}"></td>
+            <td th:text="${pedido.total}"></td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
 
 
-<div class="container mt-5">
-    <h1>Histórico de Pedidos</h1>
-    <p> </p>
-</div>
+<footer th:replace="~{home :: footer}"></footer>
 
 <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 

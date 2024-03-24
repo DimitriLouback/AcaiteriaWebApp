@@ -1,0 +1,103 @@
+body {
+    background: white;
+}
+
+footer {
+    background-color: purple;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.btn-custom {
+    background-color: purple;
+    border-radius: 20px;
+    color: yellow;
+    font-weight: bold;
+    font-size: 24px;
+    padding: 15px 30px;
+    text-decoration: none;
+}
+
+.btn-custom:hover {
+    background-color: yellow;
+    color: black;
+
+}
+
+h1 {
+    visibility: visible;
+    opacity: 1;
+}
+
+.card {
+    display: inline-block;
+    margin: 50px;
+    box-shadow: 5px 5px 20px black;
+    overflow: hidden;
+
+}
+
+.card img {
+    height: 500px;
+    width: auto; /* Alterado para auto para manter a proporção da imagem */
+    border-radius: 3px;
+    transition: transform 0.5s;
+}
+
+.card .intro {
+    height: 70px;
+    width: 350px; /* Ajuste conforme necessário */
+    padding: 6px;
+    box-sizing: border-box;
+    position: absolute;
+    background: rgba(27, 27, 27, 0.5);
+    color: white;
+    bottom: 0;
+    transition: .5s;
+    overflow: hidden;
+}
+
+.card h1 {
+    margin: 10px;
+    font-size: 40px;
+}
+
+.card p {
+    font-size: 20px;
+    margin: 20px;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.card span {
+    font-weight: bold;
+}
+
+.card:hover .intro {
+    transform: translateY(0);
+    height: 220px;
+    bottom:0;
+    background: purple;
+}
+
+.card:hover img {
+    transform: scale(1.1) rotate(-3deg);
+}
+
+.card:hover {
+    cursor:pointer;
+}
+
+.card:hover h1{
+    color: yellow;
+}
+
+.card:hover p{
+    opacity: 1;
+    visibility: visible;
+}
+

@@ -24,10 +24,13 @@ public class Cliente implements Serializable {
     @NotBlank(message = "O endereço não pode ser em branco ou nulo")
     private String endereco;
 
-    public Cliente(String nome, String telefone, String endereco) {
+    private String senha;
+
+    public Cliente(String nome, String telefone, String endereco, String senha) {
         this.nome = nome;
         this.telefone = telefone;
         this.endereco = endereco;
+        this.senha = senha;
 
     }
 
@@ -58,4 +61,20 @@ public class Cliente implements Serializable {
         this.endereco = endereco;
     }
 
+    public String getSenha() {
+        return senha;
+    }
+
+    public Cliente setSenha(String senha) {
+        this.senha = senha;
+        return this;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

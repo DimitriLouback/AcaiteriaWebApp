@@ -1,42 +1,198 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Minha Página</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
 
-  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 
 </head>
 <body>
 
-
 <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark" style="background-color: #A020F0;">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Açaí Store</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Fazer um Pedido</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Histórico</a>
-        </li>
-      </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Açaí Show</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/pedido">Fazer um Pedido</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/historico_pedidos">Histórico</a>
+                </li>
+            </ul>
+            <!-- Verificar se há um cliente logado -->
+            <th:block th:if="${session.clienteLogado != null}">
+                <span class="navbar-text me-3">
+                    <strong style="color: #FFD700;">Bem-vindo, <span
+                            th:text="${session.clienteLogado.nome}"></span></strong>
+                </span>
+            </th:block>
+            <!-- Botão de logout -->
+            <th:block th:if="${session.clienteLogado != null}">
+                <form class="d-flex" action="/logout" method="post">
+                    <button class="btn btn-outline-light" type="submit">Logout</button>
+                </form>
+            </th:block>
+            <!-- Botões de cadastro e login -->
+            <th:block th:unless="${session.clienteLogado != null}">
+                <li class="d-flex me-2">
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#cadastroModal">Cadastro
+                    </button>
+                </li>
+                <li class="d-flex">
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+                </li>
+            </th:block>
+        </div>
     </div>
-  </div>
 </nav>
 
+
+<div class="container mt-3">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 text-center">
+            <div class="lead mb-3"><strong>Bem-vindo à Açaí Show!</strong></div>
+            <p class="lead">Aqui você encontra os melhores sabores de açaí. </p>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-3">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+            <a href="/pedido" class="btn btn-custom">Iniciar Pedido</a>
+        </div>
+    </div>
+</div>
+
+<br> <br>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card">
+                <img src="/imgs/acaicopo1.jpg" alt="copo de açaí">
+                <div class="intro">
+                    <h1>Entrega rápida</h1>
+                    <p>Estamos sempre a disposição para lhe atender o mais rápido possível!</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="/imgs/acaicopo2.jpg" alt="copo de açaí">
+                <div class="intro">
+                    <h1>Delicioso</h1>
+                    <p>Não fique de fora do melhor açaí do mundo!</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="/imgs/acaicopo3.jpg" alt="copo de açaí">
+                <div class="intro">
+                    <h1>Variedade</h1>
+                    <p>Aqui você vai encontrar de tudo pra complementar seu açaí!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="text-align: center;">
+    <h5 style="font-size: 36px;">E aí? Vai ficar de fora dessa? Faça já seu pedido!</h5>
+</div>
+
+<br><br><br><br>
+
+<footer th:fragment="footer" class="bg-light-purple text-light py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <p class="mb-0">© 2024 Açaí Show. Todos os direitos reservados.</p>
+            </div>
+            <div class="col-lg-6">
+                <p class="float-lg-end mb-0">
+                    <a href="#" class="text-light">Voltar ao topo</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Modal de Cadastro -->
+<div class="modal fade" id="cadastroModal" tabindex="-1" aria-labelledby="cadastroModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cadastroModalLabel">Faça o cadastro para realizar seu pedido!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Formulário de Cadastro -->
+                <form th:action="@{/cadastrar}" method="post" th:object="${cliente}">
+                    <div class="mb-3">
+                        <label for="nome" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="nome" name="nome">
+                    </div>
+                    <div class="mb-3">
+                        <label for="telefone" class="form-label">Telefone</label>
+                        <input type="text" class="form-control" id="telefone" name="telefone">
+                    </div>
+                    <div class="mb-3">
+                        <label for="endereco" class="form-label">Endereço</label>
+                        <input type="text" class="form-control" id="endereco" name="endereco">
+                    </div>
+                    <div class="mb-3">
+                        <label for="senha" class="form-label">Senha</label>
+                        <input type="password" class="form-control" id="senha" name="senha">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Login -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Faça o login para realizar seu pedido!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Div para exibir mensagem de erro -->
+                <div th:if="${loginError}" class="alert alert-danger" role="alert">
+                    O login falhou. Por favor, verifique seu nome de usuário e senha e tente novamente.
+                </div>
+
+                <form th:action="@{/login}" method="post">
+                    <div class="mb-3">
+                        <label for="nomeLogin" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="nomeLogin" name="nome">
+                    </div>
+                    <div class="mb-3">
+                        <label for="senhaLogin" class="form-label">Senha</label>
+                        <input type="password" class="form-control" id="senhaLogin" name="senha">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 

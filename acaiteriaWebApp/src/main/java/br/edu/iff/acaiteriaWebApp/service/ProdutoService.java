@@ -55,4 +55,17 @@ public class ProdutoService {
     public List<Produto> listarProdutos() {
         return produtoRepository.findAll();
     }
+
+    public double calcularPrecoAcai(String tamanho) {
+        switch (tamanho) {
+            case "300ml":
+                return 5.0;
+            case "700ml":
+                return 8.0;
+            case "1 Litro":
+                return 12.0;
+            default:
+                return 0.0;
+        }
+    }
 }

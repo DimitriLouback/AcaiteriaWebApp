@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fazer Pedido</title>
+
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+
+</head>
+<body>
+<div th:replace="~{home :: navbar}"></div>
+
+<h1>Fazer Pedido de Açaí</h1>
+<form action="/adicionar_pedido" method="post">
+    <label for="tamanho">Escolha o tamanho:</label><br>
+    <select name="tamanho" id="tamanho">
+        <option value="300ml">300ml</option>
+        <option value="700ml">700ml</option>
+        <option value="1 Litro">1 Litro</option>
+    </select><br><br>
+
+    <label>Escolha os adicionais:</label><br>
+    <input type="checkbox" name="adicionais" value="Granola"> Granola<br>
+    <input type="checkbox" name="adicionais" value="Leite em pó"> Leite em pó<br>
+    <input type="checkbox" name="adicionais" value="Frutas"> Frutas<br><br>
+
+    <input type="submit" value="Enviar Pedido">
+</form>
+
+<footer th:replace="~{home :: footer}"></footer>
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+</html>

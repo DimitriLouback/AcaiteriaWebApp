@@ -36,7 +36,7 @@ public class ClienteController {
     @ApiResponse(responseCode = "200", description = "Cliente criado com sucesso")
     @PostMapping
     public Cliente cadastrarCliente(@Valid @RequestBody Cliente cliente) {
-        return clienteService.cadastrarCliente(cliente.getNome(), cliente.getTelefone(), cliente.getEndereco());
+        return clienteService.cadastrarCliente(cliente.getNome(), cliente.getTelefone(), cliente.getEndereco(), cliente.getSenha());
     }
 
     @PutMapping("/{id}")
